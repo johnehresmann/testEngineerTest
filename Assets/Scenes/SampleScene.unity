@@ -378,7 +378,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 175, y: -89}
+  m_AnchoredPosition: {x: 316, y: -89}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &171859481
@@ -1646,7 +1646,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 176, y: 82}
+  m_AnchoredPosition: {x: 317, y: 82}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1657321046
@@ -1941,7 +1941,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1782300780}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 24167fc2bd4e6e7498bd1ecf2376c7f6, type: 3}
+  m_Script: {fileID: 11500000, guid: a9dbc2f39550f11498bf7901a0ab80d4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   fractionsAndthings:
@@ -1952,12 +1952,15 @@ MonoBehaviour:
     denomonatorB: {fileID: 118179335}
     aNumerator: {fileID: 1657321046}
     aDenomonator: {fileID: 171859481}
-    instructionsDialogue: {fileID: 0}
+    instructionsDialogue: {fileID: 1026536511}
     initialInstructions: 
+  fraction1: {x: 0, y: 0}
+  fraction2: {x: 0, y: 0}
   numerator1: 0
   numerator2: 0
   denominator1: 0
   denominator2: 0
+  answerFraction: {x: 0, y: 0}
 --- !u!4 &1782300782
 Transform:
   m_ObjectHideFlags: 0
