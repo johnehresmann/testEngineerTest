@@ -48,124 +48,152 @@ public class fractionFormulas
 #region Math Functions
     public Vector2Int addFractions(Vector2Int fraction1, Vector2Int fraction2)
     {
-        Vector2Int newNum = new Vector2Int();
-        int tempNumerator1; int tempNumerator2;
-        int tempDenominator1; int tempDenominator2;
-        int lcd = 0; int gcd = 0;
+        Vector2Int answerFraction = new Vector2Int();
 
-        int answerNumerator; int answerDenominator;        
+        int lcd = Mathf.Abs(findLCD(fraction1.y,fraction2.y));
+        int gcd = Mathf.Abs(findGCD(fraction1.y,fraction2.y));
+
+        int answerNumerator; 
+        int answerDenominator = lcd;
+        Debug.Log("Fraction 2: " + fraction2.x + "/" + fraction2.y);
         
         //Check the Denominators to make sure they're the same
-        
         if (fraction1.y != fraction2.y)
         {
-            lcd = Mathf.Abs(findLCD(fraction1.y,fraction2.y));
-            Debug.Log("LCD: " + lcd);
-            gcd = Mathf.Abs(findGCD(fraction1.y,fraction2.y));
-            Debug.Log("GCD: " + gcd);
+            
+            int tempNumerator1; int tempNumerator2;
+            
+            if (fraction1.y != lcd)
+            {
+                tempNumerator1 = fraction1.x * (lcd/fraction1.y);
+                fraction1.x = tempNumerator1;
+                fraction1.y = lcd;
+                answerDenominator = fraction1.y;
+            }
 
-            tempNumerator1 = fraction1.x * (lcd/fraction1.y);
-            tempNumerator2 = fraction2.x * (lcd/fraction2.y);
-            Debug.Log("TempNumerator: " + tempNumerator2);
-            tempDenominator1 = lcd;
-            tempDenominator2 = lcd; 
-            
-            
-            
-            Debug.Log("Fraction 1: " + tempNumerator1 + "/" + tempDenominator1);
-            Debug.Log("Fraction 2: " + tempNumerator2 + "/" + tempDenominator2);
-            Debug.Log(lcd);
-
-            answerNumerator = tempNumerator1 + tempNumerator2;
+            else if(fraction2.y != lcd)
+            {
+                
+                
+                tempNumerator2 = fraction2.x * (lcd/fraction2.y);
+                fraction2.x = tempNumerator2;
+                fraction1.y = lcd;
+                answerDenominator = fraction1.y;
+            }
+        }
+        else
+        {
             answerDenominator = lcd;
 
-            gcd = Mathf.Abs(findGCD(answerNumerator,answerDenominator));
-
-            answerNumerator = answerNumerator/gcd;
-            answerDenominator = answerDenominator/gcd;
-            
-            Vector2Int tempAnswer = new Vector2Int(answerNumerator,answerDenominator);
-            newNum = tempAnswer;
-
-            Debug.Log("Answer = " + answerNumerator + "/" + answerDenominator);
-
-
         }
-        Debug.Log(newNum);
-        return newNum;
+        
+        Debug.Log("Fraction 1: " + fraction1.x + "/" + fraction1.y);
+        
+        Debug.Log(lcd);
+
+        answerNumerator = fraction1.x + fraction2.x;
+        Debug.Log("The Numerator for Fraction 2 is: " + fraction2.x);
+        
+
+        gcd = Mathf.Abs(findGCD(answerNumerator,answerDenominator));
+
+        answerNumerator = answerNumerator/gcd;
+        answerDenominator = answerDenominator/gcd;
+        
+        Vector2Int tempAnswer = new Vector2Int(answerNumerator,answerDenominator);
+        answerFraction = tempAnswer;
+
+        Debug.Log("Answer = " + answerNumerator + "/" + answerDenominator);
+
+        return answerFraction;
+
     }
     public Vector2Int subFractions(Vector2Int fraction1, Vector2Int fraction2)
     {
-        Vector2Int newNum = new Vector2Int();
-        int tempNumerator1; int tempNumerator2;
-        int tempDenominator1; int tempDenominator2;
-        int lcd = 0; int gcd = 0;
+        Vector2Int answerFraction = new Vector2Int();
 
-        int answerNumerator; int answerDenominator;
+        int lcd = Mathf.Abs(findLCD(fraction1.y,fraction2.y));
+        int gcd = Mathf.Abs(findGCD(fraction1.y,fraction2.y));
+
+        int answerNumerator; 
+        int answerDenominator = lcd;
         
         //Check the Denominators to make sure they're the same
         if (fraction1.y != fraction2.y)
         {
-            lcd = Mathf.Abs(findLCD(fraction1.y,fraction2.y));
-            gcd = Mathf.Abs(findGCD(fraction1.y,fraction2.y));
+            int tempNumerator1; int tempNumerator2;
+            
+            if (fraction1.y != lcd)
+            {
+                tempNumerator1 = fraction1.x * (lcd/fraction1.y);
+                fraction1.x = tempNumerator1;
+                fraction1.y = lcd;
+                answerDenominator = fraction1.y;
+            }
 
-            tempNumerator1 = fraction1.x * (lcd/fraction1.y);
-            tempNumerator2 = fraction2.x * (lcd/fraction2.y);
-            tempDenominator1 = lcd;
-            tempDenominator2 = lcd; 
-            
-            
-            
-            Debug.Log("Fraction 1: " + tempNumerator1 + "/" + tempDenominator1);
-            Debug.Log("Fraction 2: " + tempNumerator2 + "/" + tempDenominator2);
-            Debug.Log(lcd);
-
-            answerNumerator = tempNumerator1 - tempNumerator2;
+            else if(fraction2.y != lcd)
+            {
+                tempNumerator2 = fraction2.x * (lcd/fraction2.y);
+                fraction2.x = tempNumerator2;
+                fraction1.y = lcd;
+                answerDenominator = fraction1.y;
+            }
+        }
+        else
+        {
             answerDenominator = lcd;
 
-            gcd = Mathf.Abs(findGCD(answerNumerator,answerDenominator));
-
-            answerNumerator = answerNumerator/gcd;
-            answerDenominator = answerDenominator/gcd;
-            
-            Vector2Int tempAnswer = new Vector2Int(answerNumerator,answerDenominator);
-            newNum = tempAnswer;
-
-            Debug.Log("Answer = " + answerNumerator + "/" + answerDenominator);
-
         }
-        Debug.Log(newNum);
-        return newNum;
+        
+        Debug.Log("Fraction 1: " + fraction1.x + "/" + fraction1.y);
+        Debug.Log("Fraction 2: " + fraction2.y + "/" + fraction2.y);
+        Debug.Log(lcd);
+
+        answerNumerator = fraction1.x - fraction2.x;
+        
+
+        gcd = Mathf.Abs(findGCD(answerNumerator,answerDenominator));
+
+        answerNumerator = answerNumerator/gcd;
+        answerDenominator = answerDenominator/gcd;
+        
+        Vector2Int tempAnswer = new Vector2Int(answerNumerator,answerDenominator);
+        answerFraction = tempAnswer;
+
+        Debug.Log("Answer = " + answerNumerator + "/" + answerDenominator);
+
+        return answerFraction;
+
     }
 
     public Vector2Int multFractions(Vector2Int fraction1, Vector2Int fraction2)
     {
-       Vector2Int fractionOutput = new Vector2Int();
-        int answerNumerator; int answerDenominator;
-        int temporaryNumerator; int temporaryDenominator;
+       Vector2Int answerFraction = new Vector2Int();
         
+
         //Multiply the Numerators
-        temporaryNumerator = fraction1.x * fraction2.x;
+        answerFraction.x = fraction1.x * fraction2.x;
         
         //Multiply the Denomonators
-        temporaryDenominator = fraction1.y * fraction2.y;
-
-        answerNumerator = temporaryNumerator;
-        answerDenominator = temporaryDenominator;
+        answerFraction.y = fraction1.y * fraction2.y;
         
-        Debug.Log("Numerator: " + answerNumerator);
-        Debug.Log("Denomonator: " + answerDenominator);
+        Debug.Log("Numerator: " + answerFraction.x);
+        Debug.Log("Denomonator: " + answerFraction.y);
         
         //Finding the GCD of the Numerator and the denomoniator of the answer, to ensure fraction has been simplified
-        int gcd = findGCD(answerNumerator, answerDenominator);
+        int gcd = Mathf.Abs(findGCD(answerFraction.x, answerFraction.y));
         
         //Simplifying the fraction
-        answerNumerator = answerNumerator/gcd;
-        Debug.Log("Numerator: " + answerNumerator);
-        answerDenominator = answerDenominator/gcd;
-        Debug.Log("Denomonator: " + answerDenominator);
+        answerFraction.x =answerFraction.x/gcd;
+        Debug.Log("Numerator: " + answerFraction.x);
+        answerFraction.y = answerFraction.y/gcd;
+        Debug.Log("Denomonator: " + answerFraction.y);
 
-        return fractionOutput;
+        if (answerFraction.y < 0)
+        {
+            answerFraction = answerFraction * -1;
+        }
+        return answerFraction;
     }
 
     public Vector2Int divFractions(Vector2Int fraction1, Vector2Int fraction2)
@@ -174,21 +202,30 @@ public class fractionFormulas
         //Setting the recripicle
         
         Vector2Int recripicleFraction = new Vector2Int(fraction2.y,fraction2.x);
-        Vector2Int tempFraction = new Vector2Int();
+        Debug.Log("Recripcle of: " + fraction2 + "is " + recripicleFraction);
+        
         Vector2Int answerFraction = new Vector2Int();
 
         //Multiplying the Numerator of fraction 1 by the recripicle of Fraction 2
-        tempFraction.x = fraction1.x * recripicleFraction.x;
-        tempFraction.y  = fraction1.y * recripicleFraction.y;
+        answerFraction.x = fraction1.x * recripicleFraction.x;
+        Debug.Log("Answer Numerator: " + answerFraction.x);
+        answerFraction.y  = fraction1.y * recripicleFraction.y;
+        Debug.Log("Answer Denominator: " + answerFraction.y);
 
         //Finding the GCD of the answer to simplify
-        int GCD = findGCD(tempFraction.x,tempFraction.y);
+        int GCD = Mathf.Abs(findGCD(answerFraction.x,answerFraction.y));
+        Debug.Log(GCD);
 
         //Simplifying the fraction down
-        answerFraction.x = tempFraction.x/GCD;
+        answerFraction.x = answerFraction.x/GCD;
         Debug.Log("Numerator: "+ answerFraction.x );
-        answerFraction.y = tempFraction.y/GCD;
+        answerFraction.y = answerFraction.y/GCD;
         Debug.Log("Denomonator: "+ answerFraction.y );
+
+        if (answerFraction.y < 0)
+        {
+            answerFraction = answerFraction * -1;
+        }
 
         return answerFraction;
     }
